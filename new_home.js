@@ -1,6 +1,12 @@
 window.addEventListener('DOMContentLoaded', (event) => {
+    empPayrollList=getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent=empPayrollList.length;
     createInnerHtml();
 });
+const getEmployeePayrollDataFromStorage=() =>{
+    return localStorage.getItem('EmployeePayrollList') ? 
+     JSON.parse(localStorage.getItem('EmployeePayrollList')):[];
+  }
 
 const createInnerHtml = () => {
     const headerHtml = "<th></th><th>Name</th><th>Gender</th><th>Department</th>" +
@@ -14,11 +20,12 @@ const createInnerHtml = () => {
             <td>${empPayrollData._name}</td>
             <td>${empPayrollData._gender}</td>
             <td>${getDeptHtml(empPayrollData._department)}</td>
+        
             <td>${empPayrollData._salary}</td>
             <td>${empPayrollData._startDate}</td>
             <td>
-            <img src="Assets\delete-black-18dp.svg" alt="delete" id="1" onclick="remove(this)">
-            <img src="Assets\create-black-18dp.svg" alt="edit" id="1" onclick="update(this)">
+            <img src="delete-black-18dp.svg" alt="delete" id="1" onclick="remove(this)">
+            <img src="create-black-18dp.svg" alt="edit" id="1" onclick="update(this)">
                     </td>
          </tr>
                 `;
@@ -38,7 +45,7 @@ const createEmployeePayrollJSON = () => {
             _startDate: '22 may 2019',
             _note: '',
             _id: new Date().getTime(),
-            _profilePic: 'Assets/Ellipse -2.png'
+            _profilePic: './Assets/Ellipse -5.png'
         },
         {
             _name: 'Omkar Mane',
@@ -50,7 +57,7 @@ const createEmployeePayrollJSON = () => {
             _startDate: '29 Oct 2019',
             _note: '',
             _id: new Date().getTime() + 1,
-            _profilePic: 'Assets/Ellipse -5.png'
+            _profilePic: './Assets/Ellipse -2.png'
 
         }
     ];
